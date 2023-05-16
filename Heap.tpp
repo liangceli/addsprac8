@@ -107,9 +107,15 @@ void Heap<T>::remove(T value) {
   T original_last_value=values.at(values.size()-1);
   value=original_last_value;
   //删除最后一个元素用popback（）
-  values.pop_back(values.at(values.size()-1));
+  //values.pop_back(values.at(values.size()-1));
+  auto item=values.begin()+(values.size()-1);
+  values.erase(item);
   //替换之后，将被替换之后的元素和左子元素进行调换
-  swap(values.at(leftchild_idx),values.at(idx));
+  //swap(values.at(leftchild_idx),values.at(idx));
+
+  T new_temp=values.at(leftchild_idx);
+     values.at(leftchild_idx)=values.at(idx);
+    values.at(idx)=new_temp;
 }
 
 /*******************************/
