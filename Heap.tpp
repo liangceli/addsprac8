@@ -115,10 +115,10 @@ void Heap<T>::remove(T value) {
 template <typename T>
 T Heap<T>::getMin() { 
   // TO BE IMPLEMENTED
-  if (heapVec.empty()) {
+  /*if (values.empty()) {
     throw std::logic_error("Heap is empty.");
     cout<<"Heap is empty.";
-  }
+  }*/
   return values.at(0);
 }
 
