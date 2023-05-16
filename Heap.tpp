@@ -70,7 +70,10 @@ void Heap<T>::insert(T value) {
    int parent_index=floor((new_index-1)/2);
    while(parent_index>=0){
     if(values.at(new_index)<values.at(parent_index)){
-        swap(values.at(new_index),values.at(parent_index));
+        T temp=values.at(new_index);
+        values.at(new_index)=values.at(parent_index);
+        values.at(parent_index)=temp;
+        //swap(values.at(new_index),values.at(parent_index));
         int temp=new_index;
         new_index=parent_index;
         parent_index=floor((temp-1)/2);
