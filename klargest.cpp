@@ -4,8 +4,8 @@
 using namespace std;
 
 class klargest{
-    private:
-    vector<int> values;
+    //private:
+    //vector<int> values;
 
     public:
     klargest();
@@ -29,7 +29,8 @@ bool isminheap=false;
 bool ismaxheap=false;
 int parent=values.at(0);
 int child=values.at(1);
-for(int i=0; i<values.size(); i++){
+//问题：2*i+1或者2*i+2有可能越界 
+/*for(int i=0; i<values.size(); i++){
     if(values.at(i)<values.at(2*i+1) || values.at(i)<values.at(2*i+2)){
         isminheap=true;
         break;
@@ -39,6 +40,23 @@ for(int i=0; i<values.size(); i++){
     }else{
         isminheap=true;
         ismaxheap=true;
+    }
+}*/
+
+for(int i=0; i<values.size(); i++){
+    if((2*i+1 < values.size() && values.at(i)>values.at(2*i+1)) || (2*i+2 < values.size() && values.at(i)>values.at(2*i+2))){
+        isminheap=false;
+    }else{
+        isminheap=true;
+        break;
+    }
+}
+for(int i=0; i<values.size(); i++){
+    if((2*i+1 < values.size() && values.at(i)<values.at(2*i+1)) || (2*i+2 < values.size() && values.at(i)<values.at(2*i+2))){
+        ismaxheap=false;
+    }else{
+        ismaxheap=true;
+        break;
     }
 }
 
@@ -70,7 +88,8 @@ return -1;
 
 }
 
-/*int main(){
+/*
+int main(){
     vector<int> min;
     min.push_back(1);
     min.push_back(1);
@@ -99,8 +118,8 @@ return -1;
     non.push_back(1);
 
     klargest k;
-    cout<<k.kth_largest(min,2);
-    cout<<k.kth_largest(max,2);
-    cout<<k.kth_largest(non,2);
+    cout<<k.kth_largest(min,2)<<endl;
+    cout<<k.kth_largest(max,2)<<endl;
+    cout<<k.kth_largest(non,2)<<endl;
     return 0;
 }*/
