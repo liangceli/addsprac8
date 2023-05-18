@@ -90,7 +90,7 @@ template <typename T>
 void Heap<T>::remove(T value) {
   // TO BE IMPLEMENTED
   //如何在vector中找到value（从左边数的第一个）得到index
-  int idx=0;
+  int idx=1;
   for(int i=0; i<values.size(); i++){
     idx++;
     if(values.at(i)==value){
