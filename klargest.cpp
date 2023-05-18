@@ -4,31 +4,25 @@
 using namespace std;
 
 class klargest{
-    //private:
-    //vector<int> values;
 
     public:
     klargest();
-    //klargest(vector<int> curr_values);
     int kth_largest(vector<int> values, int k);
 };
 
 klargest :: klargest(){}
-/*klargest :: klargest(vector<int> curr_values){
-    for(int i=0; i<curr_values.size(); i++){
-        values.push_back(curr_values.at(i));     
-    }
-}*/
 
 int klargest :: kth_largest(vector<int> values, int k){ //k indicates the k'th larges.  For example, if k is 2, then we return the second largest, if k is 5, we return the 5th largest.
 
 //两种情况：1.minheap 2.maxheap
 //判断进来的values是minheap还是maxheap
 //为避免特殊情况 判断是minheap还是maxheap的方法：看此heap的parent和child之间有没有大小关系 只要有一处大小关系，就可以判断出这个heap是什么heap
-bool isminheap=false;
+
+/*bool isminheap=false;
 bool ismaxheap=false;
 int parent=values.at(0);
-int child=values.at(1);
+int child=values.at(1);*/
+
 //问题：2*i+1或者2*i+2有可能越界 
 /*for(int i=0; i<values.size(); i++){
     if(values.at(i)<values.at(2*i+1) || values.at(i)<values.at(2*i+2)){
@@ -43,25 +37,42 @@ int child=values.at(1);
     }
 }*/
 
+/*
 for(int i=0; i<values.size(); i++){
-    if((2*i+1 < values.size() && values.at(i)>values.at(2*i+1)) || (2*i+2 < values.size() && values.at(i)>values.at(2*i+2))){
-        isminheap=false;
+    if((2*i+1 <= values.size() && values.at(i)>values.at(2*i+1)) || (2*i+2 <= values.size() && values.at(i)>values.at(2*i+2))){
+        ismaxheap=true;
+        break;
     }else{
         isminheap=true;
         break;
     }
 }
-for(int i=0; i<values.size(); i++){
+*/
+
+
+/*for(int i=0; i<values.size(); i++){
     if((2*i+1 < values.size() && values.at(i)<values.at(2*i+1)) || (2*i+2 < values.size() && values.at(i)<values.at(2*i+2))){
-        ismaxheap=false;
+        isminheap=true;
     }else{
         ismaxheap=true;
         break;
     }
-}
+}*/
 
 int target;
+
+ priority_queue<int> maxpq;
+    for(int i=0; i<values.size(); i++){
+        maxpq.push(values.at(i));
+    }
+    for(int j=1; j<=(k-1); j++){
+        maxpq.pop();
+    }
+    target=maxpq.top();
+    return target;
+
 //当是minheap的时候
+/*
 if(isminheap==true){ //当是minheap的时候 优先级是小
     priority_queue<int, vector<int>, greater<int> > minpq;
     for(int i=0; i<values.size(); i++){
@@ -85,11 +96,12 @@ if(isminheap==true){ //当是minheap的时候 优先级是小
 }else{ //当既是maxheap也是minheap的时候(heap里面的数都相等)
 return -1;
 }
+*/
+
 
 }
 
-/*
-int main(){
+/*int main(){
     vector<int> min;
     min.push_back(1);
     min.push_back(1);
@@ -118,8 +130,8 @@ int main(){
     non.push_back(1);
 
     klargest k;
-    cout<<k.kth_largest(min,2)<<endl;
-    cout<<k.kth_largest(max,2)<<endl;
-    cout<<k.kth_largest(non,2)<<endl;
+    cout<<k.kth_largest(min,1)<<endl;
+    cout<<k.kth_largest(max,5)<<endl;
+    cout<<k.kth_largest(non,5)<<endl;
     return 0;
 }*/
