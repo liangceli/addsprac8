@@ -72,14 +72,12 @@ void Heap<T>::insert(T value) {
     if(parent_index<0){
       return;
     }
-    while(values.at(new_index)<values.at(parent_index) && parent_index>=0){
+    while(parent_index>=0 && values.at(new_index)<values.at(parent_index)){
         T ele_temp=values.at(new_index);
         values.at(new_index)=values.at(parent_index);
         values.at(parent_index)=ele_temp;
         new_index=parent_index;
-        /*int temp=new_index;
-        new_index=parent_index;
-        parent_index=floor((temp-1)/2);*/
+        parent_index = floor((new_index - 1) / 2);
     }
 
 }
