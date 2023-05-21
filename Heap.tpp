@@ -89,14 +89,16 @@ void Heap<T>::insert(T value) {
 template <typename T>
 void Heap<T>::remove(T value) {
   // TO BE IMPLEMENTED
-  //如何在vector中找到value（从左边数的第一个）得到index
-  int idx=1;
+
+  /*//如何在vector中找到value（从左边数的第一个）得到index
+  int idx=0;
   for(int i=0; i<values.size(); i++){
     idx++;
     if(values.at(i)==value){
         break;
     }
   }
+
   //要被删除的如果没有children 直接删除就好了
   int leftchild_idx=idx*2+1;
   int rightchild_idx=idx*2+2;
@@ -133,7 +135,22 @@ void Heap<T>::remove(T value) {
       values.at(leftchild_idx)=values.at(idx);
       values.at(idx)=new_temp;
     }
+  }*/
+
+  int index=-1;
+  for (int i=0;i<values.size();i++) {
+    if (values.at(i)==value) {
+      index=i;
+      break;
+    }
   }
+  if (index==-1) {
+    return;
+  }
+  values.at(index)=values.at(values.size()-1);
+  values.pop_back();
+  heapify(index);
+  return;
   
 }
 
